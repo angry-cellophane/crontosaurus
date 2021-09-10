@@ -45,14 +45,25 @@ The job creates binaries for linux and mac.
 The best way to get the binaries is to check the latest build's artifacts 
 or download them directly from [this link](https://github.com/angry-cellophane/crontosaurus/actions/runs/1222762277).
 
+## Usage
+
+`crontosaurus <<cron expression>>`
+
+where `<<cron expression>>` is a cron expression.
+
+The accepted format of cron expressions: 
+1. 6 columns separated by spaces or tabs: minutes, hours, days of the month, months, days of the week, command.
+2. Format of every column [described here](https://github.com/robfig/cron/blob/master/README.md)
+
 ## Building locally
 
 You'll need `golang 1.16+`.
 
-1. Run `go build` in the project's directory. 
+1. Run `go test` in the project's directory to run tests.
+2. Run `go build` in the project's directory. 
 It will create a file - `crontosaurus` - in the same directory.
-2. Run `chmod +x ./crontosaurus` to make it executable
-3. Run `./crontosaurus --help` to see its full power.
+3. Run `chmod +x ./crontosaurus` to make it executable
+4. Run `./crontosaurus --help` to see its full power.
 
 ## How it works?
 
