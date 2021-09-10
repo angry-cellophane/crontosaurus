@@ -1,7 +1,8 @@
 # What's this? 
+
 crontosaurus
 
-# Why?
+## Why?
 Write a command line application or script which parses a cron string and expands each field
 to show the times at which it will run. You may use whichever language you feel most
 comfortable with.
@@ -34,3 +35,29 @@ command /usr/bin/find
 
 README and instructions for how to run your project in a clean OS X/Linux
 environment.
+
+## Getting Binaries
+
+There's a github action job that uploads binaries on every build.
+
+The job creates binaries for linux and mac.
+
+The best way to get the binaries is to check the latest build's artifacts 
+or download them directly from [this link](https://github.com/angry-cellophane/crontosaurus/actions/runs/1222762277).
+
+## Building locally
+
+You'll need `golang 1.16+`.
+
+1. Run `go build` in the project's directory. 
+It will create a file - `crontosaurus` - in the same directory.
+2. Run `chmod +x ./crontosaurus` to make it executable
+3. Run `./crontosaurus --help` to see its full power.
+
+## How it works?
+
+It basically uses the [robfig/cron](https://github.com/robfig/cron) lib to parse cron expressions and a bit of formatting of the result in console.
+
+## How to make a change?
+
+You don't want to. This is a test project.
