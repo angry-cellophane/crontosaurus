@@ -58,6 +58,8 @@ It will create a file - `crontosaurus` - in the same directory.
 
 It basically uses the [robfig/cron](https://github.com/robfig/cron) lib to parse cron expressions and a bit of formatting of the result in console.
 
+The only trick is that this `CLI` doesn't accept seconds, so they are added automatically (`0` value).
+
 ## How to make a change?
 
 You don't want to. This is a test project.
