@@ -34,3 +34,5 @@ jobs:
       env:
         GOPROXY: "https://proxy.golang.org"
       run: go test -v .
+    - name: Integration test
+      run: ./integration_test.sh
