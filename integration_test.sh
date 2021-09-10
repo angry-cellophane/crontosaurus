@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # low budget integration test
-# it checks cli can show something for a simple example and doesn't return error code
-# at least, it exists
+# it checks if the cli can show something for a simple example and doesn't return error code
+# at least, this test exists
 
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
