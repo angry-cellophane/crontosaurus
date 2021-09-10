@@ -44,11 +44,11 @@ func Test_splitByFields(t *testing.T) {
 		args   args
 		fields []string
 	}{
-		{"valid divided by spaces", args{"*/15 0 1,15 * 1-5 /sbin/shutdown"},
+		{"valid, separated by spaces", args{"*/15 0 1,15 * 1-5 /sbin/shutdown"},
 			[]string{"*/15", "0",  "1,15", "*", "1-5", "/sbin/shutdown"}},
-		{"valid divided by tabs", args{"*	0	1	*	1-5	/sbin/shutdown"},
+		{"valid, separated by tabs", args{"*	0	1	*	1-5	/sbin/shutdown"},
 			[]string{"*", "0",  "1", "*", "1-5", "/sbin/shutdown"}},
-		{"valid mixed tabs and spaces", args{"*	0 1	*	1-5 /sbin/shutdown"},
+		{"valid, mixed tabs and spaces", args{"*	0 1	*	1-5 /sbin/shutdown"},
 			[]string{"*", "0",  "1", "*", "1-5", "/sbin/shutdown"}},
 	}
 	for _, tt := range tests {
@@ -72,8 +72,8 @@ func Test_splitByFields_errors(t *testing.T) {
 		name   string
 		args   args
 	}{
-		{"columns < 6", args{"*/15 0 * 1-5 /sbin/shutdown"}},
-		{"columns > 6", args{"*/15 0 * 1-5 12 1 2 /sbin/shutdown"}},
+		{"len(columns) < 6", args{"*/15 0 * 1-5 /sbin/shutdown"}},
+		{"len(columns) > 6", args{"*/15 0 * 1-5 12 1 2 /sbin/shutdown"}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -107,7 +107,7 @@ func Test_toHumanReadableExplanation(t *testing.T) {
 			toTestTable("1", "1", "1", createRange(1, 12), "1", "/command")},
 		{"all dows", args{"0 1 1 1 1 *", "/command"},
 			toTestTable("1", "1", "1", "1", createRange(0, 6), "/command")},
-		{"example from sample", args{"0 */15 0 1,15 * 1-5", "/usr/bin/find"},
+		{"sample example", args{"0 */15 0 1,15 * 1-5", "/usr/bin/find"},
 			toTestTable("0 15 30 45", "0", "1 15", createRange(1, 12), createRange(1,5), "/usr/bin/find")},
 	}
 	for _, tt := range tests {

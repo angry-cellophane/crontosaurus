@@ -11,7 +11,7 @@ import (
 var cmd = &cobra.Command{
 	Use:     "crontosaurus",
 	Example: "crontosaurus '*/15 0 1,15 * 1-5 /usr/bin/find'",
-	Short:   "cli to explain cron expressions",
+	Short:   "CLI to explain cron expressions",
 	Args:    cobra.ExactArgs(1),
 	RunE:    runCommand,
 }
@@ -61,11 +61,16 @@ func splitByFields(expression string) ([]string, error) {
 }
 
 func toCronAndCommand(fields []string) (string, string) {
+	// the input expression doesn't have seconds but the parser expects it to be
+	// adding a fake 0 second to make parser happy
 	cronExpression := "0 " + strings.Join(fields[:len(fields)-1], " ")
 	command := fields[len(fields)-1]
 	return cronExpression, command
 }
 
+/*
+	first 14 chars on field name + padding, then a list of value separated by space
+ */
 func toTable(schedule *cron.SpecSchedule, command string) string {
 	return fmt.Sprintf(
 		"minute        %s\n" +
@@ -78,12 +83,19 @@ func toTable(schedule *cron.SpecSchedule, command string) string {
 		getValues(schedule.Hour, 23),
 		getValues(schedule.Dom, 31),
 		getValues(schedule.Month,12),
-		getValues(schedule.Dow, 7),
+		getValues(schedule.Dow, 6),
 		strings.TrimSpace(command),
 	)
 }
 
 
+/*
+	SpecSchedule stores fields in bitsets, uint64.
+	every bit represents a value, up to 64 distinct value.
+	minute uses only 60 bits
+	hour uses 24 bits
+	etc
+ */
 func getValues(value uint64, bitLimit int) string {
 	var mask uint64 = 1
 
