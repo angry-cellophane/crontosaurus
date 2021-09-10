@@ -14,4 +14,4 @@ go help || (echo "go installation not found. Please install it." && exit 1)
 
 go build -o "$SCRIPT_DIR/crontosaurus" "$SCRIPT_DIR"
 chmod +x "$SCRIPT_DIR/crontosaurus"
-"$SCRIPT_DIR/crontosaurus" '*/15 0 1,15 * 1-5 2 /usr/bin/find'
+"$SCRIPT_DIR/crontosaurus" '*/15 0 1,15 * 1-5 /usr/bin/find'
