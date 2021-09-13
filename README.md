@@ -74,3 +74,10 @@ The only trick is that this `CLI` doesn't accept seconds, so they are added auto
 ## How to make a change?
 
 You don't want to. This is a test project.
+
+## Wait, you didn't write the parser?
+
+Yeah, it wasn't the goal of this exercise. The goal was to write a cli.
+
+## Alright, but I still want to see a parser
+Alright, it's [here](https://github.com/angry-cellophane/cron-cli) but it's in java.
